@@ -8,6 +8,22 @@ async function getClassifications() {
 }
 
 /* ***************************
+ *  Get all classification data
+ * ************************** */
+async function getInventoryById(inv_id) {
+  try {
+    if (isNaN(inv_id)) {
+      throw new Error("Invalid inventory ID")
+    }
+
+    return await pool.query(`SELECT * FROM public.inventory AS i WHERE i.inventory_id = $1`, [inv_id])
+  } catch (error) {
+    console.error("getInventoryById error " + error)
+    return null
+  }
+}
+
+/* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
