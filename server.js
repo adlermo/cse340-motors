@@ -43,8 +43,6 @@ app.use(notFound)
 // General error handler (keep this last)
 app.use(serverError)
 
-// ...existing code...
-
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
