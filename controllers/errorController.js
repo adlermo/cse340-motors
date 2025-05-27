@@ -9,7 +9,7 @@ const notFound = async (err, req, res, next) => {
     const errorDetails = `
     <div class="error-details">
         <p><strong>Message:</strong> ${err.message || "Sorry, the page you requested was not found"}</p>
-        <img src="/images/vehicles/no-image.png" alt="Error Image" class="error-image">
+        <img src="/images/vehicles/car-not-found.jpg" alt="Error Image" class="error-image">
     </div>`
 
     res.status(404).render("error", {
@@ -27,7 +27,7 @@ const serverError = async (err, req, res, next) => {
     const errorDetails = `
     <div class="error-details">
         <p><strong>Message:</strong> ${err.message || "An unexpected error occurred"}</p>
-        <img src="/images/vehicles/no-image.png" alt="Error Image" class="error-image">
+        <img src="/images/vehicles/server-error.png" alt="Error Image" class="error-image">
     </div>`
 
     res.status(err.status || 500).render("error", {

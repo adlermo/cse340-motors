@@ -32,23 +32,22 @@ Util.buildClassificationGrid = async function (data) {
     if (data.length > 0) {
         grid = '<ul id="inv-display">'
         data.forEach(vehicle => {
-            grid += '<li>'
-            grid += '<a href="../../inv/detail/' + vehicle.inv_id
-                + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
-                + 'details"><img src="' + vehicle.inv_thumbnail
-                + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
-                + ' on CSE Motors" /></a>'
-            grid += '<div class="namePrice">'
-            grid += '<hr />'
-            grid += '<h2>'
-            grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View '
-                + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
-                + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-            grid += '</h2>'
-            grid += '<span>$'
-                + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-            grid += '</div>'
-            grid += '</li>'
+            grid += `
+            <li>
+            <a href="../../inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
+                <img src="${vehicle.inv_thumbnail}" alt="${vehicle.inv_color} ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}"/>
+            </a>
+            <div class="namePrice">
+                <hr />
+                <h2>
+                <a href="../../inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
+                    ${vehicle.inv_make} ${vehicle.inv_model}
+                </a>
+                </h2>
+                <span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>
+            </div>
+            </li>
+            `
         })
         grid += '</ul>'
     } else {
@@ -70,7 +69,7 @@ Util.buildInventoryDetails = async function (data) {
     const vehicle = data[0]
     card = `
     <div class="detail">
-        <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors" />
+        <img src="${vehicle.inv_image}" alt="${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model} image" />
         <div class="detail-info">
             <h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>
             <h2 class="price">Price: $${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(vehicle.inv_price).replace('$', '')}</h2>
