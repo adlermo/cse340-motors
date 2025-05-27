@@ -16,7 +16,8 @@ async function getInventoryById(inv_id) {
       throw new Error("Invalid inventory ID")
     }
 
-    return await pool.query(`SELECT * FROM public.inventory AS i WHERE i.inventory_id = $1`, [inv_id])
+    const data = await pool.query(`SELECT * FROM public.inventory AS i WHERE i.inv_id = $1`, [inv_id])
+    return data.rows
   } catch (error) {
     console.error("getInventoryById error " + error)
     return null
@@ -41,4 +42,4 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId }
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById }

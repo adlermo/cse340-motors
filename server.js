@@ -12,6 +12,7 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const { notFound, serverError } = require("./controllers/errorController")
 
 /* ***********************
  * View Engine and Templates
@@ -29,6 +30,20 @@ app.use(static)
 app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Example route to trigger a server error
+app.use("/server-error", (req, res, next) => {
+  const err = new Error("This is a server error example")
+  err.status = 500
+  next(err)
+})
+
+// 404 handler
+app.use(notFound)
+// General error handler (keep this last)
+app.use(serverError)
+
+// ...existing code...
 
 /* ***********************
  * Local Server Information

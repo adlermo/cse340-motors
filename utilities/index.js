@@ -57,4 +57,37 @@ Util.buildClassificationGrid = async function (data) {
     return grid
 }
 
+/* **************************************
+* Build inventory details view HTML
+* ************************************ */
+Util.buildInventoryDetails = async function (data) {
+    let card
+    console.log("data", data)
+    if (data.length === 0) {
+        return '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+    }
+
+    const vehicle = data[0]
+    card = `
+    <div class="detail">
+        <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors" />
+        <div class="detail-info">
+            <h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>
+            <h2 class="price">Price: $${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(vehicle.inv_price).replace('$', '')}</h2>
+            <ul>
+                <li><strong>Year:</strong> ${vehicle.inv_year}</li>
+                <li><strong>Make:</strong> ${vehicle.inv_make}</li>
+                <li><strong>Model:</strong> ${vehicle.inv_model}</li>
+                <li><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</li>
+                <li><strong>Mileage:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</li>
+                <li><strong>Color:</strong> ${vehicle.inv_color}</li>
+                <li><strong>Description:</strong> ${vehicle.inv_description}</li>
+            </ul>
+        </div>
+    </div>
+    `
+
+    return card
+}
+
 module.exports = Util
