@@ -2,6 +2,7 @@
   --primary-color: #007bff;
   --secondary-color: #6c757d;
   --success-color: #28a745;
+  --dark-success-color: #0a4852;
   --info-color: #17a2b8;
   --warning-color: #ffc107;
   --danger-color: #dc3545;
@@ -102,6 +103,66 @@ main h1 {
 
 main h2 {
   margin-bottom: 0.8rem;
+}
+
+/* Login Form Styles */
+main.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: var(--light-color);
+}
+
+main.login-page > form#login-form {
+  width: 50%;
+  /* margin: 1em auto; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 2rem;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  border: 1px solid var(--dark-color);
+}
+
+main.login-page > form#login-form {
+  font-family: var(--font-family-title);
+  margin-bottom: 1rem;
+  color: var(--white-color);
+}
+
+main.login-page > form#login-form label {
+  font-family: var(--font-family-text);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+main.login-page > form#login-form input[type='email'],
+main.login-page > form#login-form input[type='password'] {
+  font-family: var(--font-family-text);
+  padding: 0.8rem 0.5rem;
+  border: 1px solid var(--dark-color);
+  border-radius: 5px;
+  width: 100%;
+}
+
+main.login-page > form#login-form button[type='submit'] {
+  font-family: var(--font-family-text);
+  font-weight: 700;
+  background-color: var(--dark-success-color);
+  color: var(--white-color);
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  width: 50%;
+}
+
+main.login-page > form#login-form button[type='submit']:hover {
+  background-color: var(--info-color);
+  transition: all 0.3s ease;
 }
 
 /* Section: call to action */
