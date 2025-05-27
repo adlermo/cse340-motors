@@ -224,7 +224,6 @@ main h2 {
 
 #inv-display li {
   background: var(--dark-color);
-  border: 1px solid var(--info-color);
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(52, 58, 64, 0.08);
   overflow: hidden;
@@ -237,7 +236,7 @@ main h2 {
   margin: 1em 0.5rem;
 
   width: 250px;
-  height: 280px;
+  height: 300px;
 }
 
 #inv-display li:hover {
@@ -250,7 +249,7 @@ main h2 {
   height: 140px;
   object-fit: contain;
   border-radius: 6px;
-  border: 1px solid var(--info-color);
+  border: 1px solid var(--warning-color);
   background: var(--dark-color);
   margin-bottom: 1rem;
 }
@@ -262,30 +261,31 @@ main h2 {
 
 #inv-display .namePrice hr {
   border: none;
-  border-top: 1px solid var(--info-color);
+  border-top: 1px solid var(--warning-color);
   margin: 0.5rem 0;
 }
 
 #inv-display .namePrice h2 {
-  font-size: 1.1rem;
+  /* font-size: 1.3rem; */
   margin: 0.5rem 0 0.2rem 0;
   font-family: var(--font-family-title);
 }
 
 #inv-display .namePrice h2 a {
-  color: var(--info-color);
+  font-size: 1.3rem;
+  color: var(--warning-color);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 #inv-display .namePrice h2 a:hover {
-  color: var(--info-color);
+  color: var(--white-color);
 }
 
 #inv-display .namePrice span {
   display: block;
   color: var(--success-color);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-top: 0.3rem;
 }
@@ -324,7 +324,7 @@ main h2 {
   font-family: var(--font-family-title);
   font-size: 2rem;
   margin: 0 0 0.5rem 0;
-  color: var(--info-color);
+  color: var(--warning-color);
 }
 
 .detail-info .price {
@@ -346,7 +346,7 @@ main h2 {
 }
 
 .detail-info ul li strong {
-  color: var(--light-color);
+  color: var(--warning-color);
 }
 
 /* Error styles */
