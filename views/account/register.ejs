@@ -1,0 +1,35 @@
+<main class="account-page">
+    <h1>
+        <%= title %>
+    </h1>
+
+    <% messages() %>
+
+        <form action="/account/register" method="post" id="account-form">
+            <label for="fname">First Name:
+                <input type="text" name="account_firstname" id="fname" required value="<%= locals.account_firstname %>">
+            </label>
+
+            <label for="lname">Last Name:
+                <input type="text" name="account_lastname" id="lname" required value="<%= locals.account_lastname %>">
+            </label>
+
+            <label for="email">Email Address:
+
+                <input type="email" id="email" name="account_email" required>
+            </label>
+
+            <label for="password">Password:
+
+                <input type="password" id="password" name="account_password" required>
+            </label>
+
+            <br>
+
+            <button type="submit">Register</button>
+        </form>
+        <p>
+            Already have an account?
+            <a href="/account/login">Login</a>
+        </p>
+</main>

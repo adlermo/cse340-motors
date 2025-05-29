@@ -17,8 +17,6 @@ const utilities = require("./utilities/")
 const static = require("./routes/static")
 // Importing controllers and routes
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute")
-const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
  * Middleware
@@ -59,8 +57,8 @@ app.use(static)
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
-app.use("/inv", inventoryRoute)
-app.use("/account", accountRoute)
+app.use("/inv", require("./routes/inventoryRoute"))
+app.use("/account", require("./routes/accountRoute"))
 
 // Example route to trigger a server error
 app.use("/server-error", (req, res, next) => {
