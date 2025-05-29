@@ -11,13 +11,14 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
+const bodyParser = require("body-parser")
+const utilities = require("./utilities/")
+
 const static = require("./routes/static")
 // Importing controllers and routes
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
-// Importing error handling controllers
-const { notFound, serverError } = require("./controllers/errorController")
 
 /* ***********************
  * Middleware
@@ -32,6 +33,9 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -53,7 +57,7 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 
 // Index route
-app.get("/", baseController.buildHome)
+app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
@@ -65,10 +69,44 @@ app.use("/server-error", (req, res, next) => {
   next(err)
 })
 
-// 404 handler
-app.use(notFound)
-// General error handler (keep this last)
-app.use(serverError)
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({ status: 404, message: 'Sorry, we appear to have lost that page.' })
+})
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  let title = 'Error'
+  let message = ''
+
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+
+  if (err.status == 404) {
+    title = 'Page Not Found'
+    message = `
+    <div class="error-details">
+        <p><strong>Message:</strong> ${err.message || "Sorry, the page you requested was not found"}</p>
+        <img src="/images/vehicles/car-not-found.jpg" alt="Error Image" class="error-image">
+    </div>`
+  } else {
+    title = 'Server Error'
+    message = `
+    <div class="error-details">
+        <p><strong>Message:</strong> ${err.message || "An unexpected error occurred"}</p>
+        <img src="/images/vehicles/server-error.png" alt="Error Image" class="error-image">
+    </div>`
+  }
+  res.render("errors/error", {
+    title: title,
+    nav,
+    message,
+    status: err.status || 500,
+  })
+})
 
 /* ***********************
  * Local Server Information
