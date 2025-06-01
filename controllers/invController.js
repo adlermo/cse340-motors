@@ -24,6 +24,7 @@ invController.buildByClassificationId = async function (req, res, next) {
             title: className + " vehicles",
             nav,
             grid,
+            errors: null,
         })
     } catch (error) {
         next(error)
@@ -50,6 +51,7 @@ invController.buildByInventoryId = async function (req, res, next) {
             title: invName,
             nav,
             details,
+            errors: null,
         })
     } catch (error) {
         next(error)

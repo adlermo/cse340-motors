@@ -8,7 +8,7 @@ baseController.buildHome = async function (req, res, next) {
 
     req.flash("notice", "This is a flash message.")
 
-    res.render("index", { title: "Home", nav })
+    res.render("index", { title: "Home", nav, errors: null })
   } catch (error) {
     next(error)
   }
