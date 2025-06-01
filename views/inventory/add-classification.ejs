@@ -1,0 +1,29 @@
+<% if (typeof flash !== "undefined" && flash.notice) { %>
+  <div class="flash-message" style="display: none;"><%= flash.notice %></div>
+<% } %>
+<% if (typeof errors !== "undefined" && errors.length > 0) { %>
+  <ul class="error-list">
+    <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<main>
+  <h1>Add New Classification</h1>
+  <form id="addClassificationForm" action="/inv/add-classification" method="post">
+    <label for="classification_name">Classification Name</label>
+    <input 
+      type="text" 
+      id="classification_name" 
+      name="classification_name" 
+      pattern="^[A-Za-z0-9]+$" 
+      title="No spaces or special characters allowed." 
+      required
+      maxlength="30"
+      value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
+    >
+    <small>No spaces or special characters allowed.</small>
+    <button type="submit">Add Classification</button>
+  </form>
+</main>

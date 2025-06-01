@@ -1,0 +1,12 @@
+<% if (typeof flash !== "undefined" && flash.notice) { %>
+  <div class="flash-message" style="display: none;"><%= flash.notice %></div>
+<% } %>
+
+<main>
+  <h1>Inventory Management</h1>
+  <p>Welcome to the inventory management section. Use the links below to manage classifications and inventory.</p>
+  <ul>
+    <li><a href="/inv/add-classification">Add New Classification</a></li>
+    <li><a href="/inv/add-inventory">Add New Inventory</a></li>
+  </ul>
+</main>
