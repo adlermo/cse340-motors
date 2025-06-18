@@ -12,6 +12,7 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 const utilities = require("./utilities/")
 
 const static = require("./routes/static")
@@ -35,6 +36,8 @@ app.use(session({
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+app.use(cookieParser())
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function (req, res, next) {
@@ -55,9 +58,14 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 
 // Index route
-app.get("/", utilities.handleErrors(baseController.buildHome))
+app.get("/",
+  utilities.handleErrors(baseController.buildHome))
 // Inventory routes
-app.use("/inv", require("./routes/inventoryRoute"))
+app.use("/inv",
+  utilities.checkJWTToken,
+  utilities.checkLogin,
+  utilities.handleErrors(require("./routes/inventoryRoute")))
+
 app.use("/account", require("./routes/accountRoute"))
 
 // Example route to trigger a server error

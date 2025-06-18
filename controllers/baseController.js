@@ -6,8 +6,6 @@ baseController.buildHome = async function (req, res, next) {
     // You can add any logic here if needed before rendering the home page
     const nav = await utilities.getNav()
 
-    req.flash("notice", "This is a flash message.")
-
     res.render("index", { title: "Home", nav, errors: null })
   } catch (error) {
     next(error)
