@@ -62,11 +62,10 @@ app.get("/",
   utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv",
-  utilities.checkJWTToken,
-  utilities.checkLogin,
   utilities.handleErrors(require("./routes/inventoryRoute")))
 
 app.use("/account", require("./routes/accountRoute"))
+app.use("/reviews", require("./routes/reviewRoute"))
 
 // Example route to trigger a server error
 app.use("/server-error", (req, res, next) => {

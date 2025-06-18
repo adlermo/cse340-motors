@@ -2,5 +2,8 @@
     <% if (details) { %>
         <%# messages() %>
         <%- details %>
+        <div class="reviews-link">
+            <a href="/reviews/<%= inv_id %>">View & Submit Reviews for this Vehicle</a>
+        </div>
     <% } else { res.redirect('/') } %>
 </main>

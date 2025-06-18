@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Vehicle Reviews</h1>
+    <div class="back-link">
+        <a href="/inv/detail/<%= inv_id %>">&larr; Back to Vehicle Details</a>
+    </div>
+
+    <% if (errors && errors.length> 0) { %>
+        <div class="errors">
+            <% errors.forEach(function(error) { %>
+                <p class="error-message">
+                    <%= error %>
+                </p>
+                <% }) %>
+        </div>
+        <% } %>
+
+            <h2>Submit a Review</h2>
+            <form action="/reviews/add" method="POST">
+                <input type="hidden" name="inv_id" value="<%= inv_id %>" />
+                <textarea name="review_text" rows="4" cols="50" required minlength="3"
+                    placeholder="Write your review..."></textarea><br>
+                <button type="submit">Submit Review</button>
+            </form>
+
+            <h2>All Reviews</h2>
+            <% if (reviews && reviews.length> 0) { %>
+                <ul class="review-list">
+                    <% reviews.forEach(function(review) { %>
+                        <li>
+                            <strong>
+                                <%= review.account_firstname %>
+                                    <%= review.account_lastname.charAt(0) %>.
+                            </strong>
+                            <em>(<%= new Date(review.review_date).toLocaleString() %>)</em><br>
+                            <%= review.review_text %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } else { %>
+                    <p>No reviews yet. Be the first to review this vehicle!</p>
+                    <% } %>
+</div>

@@ -52,6 +52,7 @@ invController.buildByInventoryId = async function (req, res, next) {
             nav,
             details,
             errors: null,
+            inv_id: data[0].inv_id // Pass inv_id to the view
         })
     } catch (error) {
         next(error)
