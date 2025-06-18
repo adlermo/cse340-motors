@@ -114,7 +114,7 @@ main.account-page {
   background-color: var(--light-color);
 }
 
-main.account-page > form#account-form {
+main.account-page form#account-form {
   width: 50%;
   /* margin: 1em auto; */
   display: flex;
@@ -127,21 +127,21 @@ main.account-page > form#account-form {
   border: 1px solid var(--dark-color);
 }
 
-main.account-page > form#account-form {
+main.account-page form#account-form {
   font-family: var(--font-family-title);
   margin-bottom: 1rem;
   color: var(--white-color);
 }
 
-main.account-page > form#account-form > label {
+main.account-page form#account-form > label {
   font-family: var(--font-family-text);
   font-weight: 700;
   width: 100%;
 }
 
-main.account-page > form#account-form > label > input[type='text'],
-main.account-page > form#account-form > label > input[type='email'],
-main.account-page > form#account-form > label > input[type='password'] {
+main.account-page form#account-form > label > input[type='text'],
+main.account-page form#account-form > label > input[type='email'],
+main.account-page form#account-form > label > input[type='password'] {
   font-family: var(--font-family-text);
   padding: 0.8rem 0.5rem;
   margin: 0.5rem 0;
@@ -150,7 +150,7 @@ main.account-page > form#account-form > label > input[type='password'] {
   width: 100%;
 }
 
-main.account-page > form#account-form button[type='submit'] {
+main.account-page form#account-form button[type='submit'] {
   font-family: var(--font-family-text);
   font-weight: 700;
   background-color: var(--dark-success-color);
@@ -162,7 +162,7 @@ main.account-page > form#account-form button[type='submit'] {
   width: 50%;
 }
 
-main.account-page > form#account-form button[type='submit']:hover {
+main.account-page form#account-form button[type='submit']:hover {
   background-color: var(--info-color);
   transition: all 0.3s ease;
 }

@@ -14,8 +14,8 @@
 
             <label for="password">Password:
                 <input type="password" id="password" name="account_password" required
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                    title="Password must be at least 8 characters long and contain at least one letter and one number.">
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{12,}$"
+                    title="Password must be at least 8 characters long and contain at least one letter, one number, and one symbol.">
             </label>
 
             <br>
