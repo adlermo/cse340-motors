@@ -59,9 +59,13 @@ app.use(static)
 
 // Index route
 app.get("/",
+  utilities.checkJWTToken,
+
   utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv",
+  utilities.checkJWTToken,
+
   utilities.handleErrors(require("./routes/inventoryRoute")))
 
 app.use("/account", require("./routes/accountRoute"))

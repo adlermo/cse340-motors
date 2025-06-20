@@ -794,3 +794,10 @@ form[action^="/reviews"] button:hover {
   color: #fff;
   text-decoration: none;
 }
+
+#welcome-message, .welcome-message {
+  margin-right: 1em;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1em;
+}

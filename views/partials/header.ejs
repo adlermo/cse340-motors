@@ -4,6 +4,9 @@
     </span>
     <div id="tools">
         <% if (locals.loggedin) { %>
+            <% if (locals.accountData && locals.accountData.account_firstname && locals.accountData.account_id) { %>
+                <a class="welcome-message" href="/account" title="Go to Account Management">Welcome, <%= locals.accountData.account_firstname %>!</a>
+            <% } %>
             <a title="Click to log out" href="/account/logout">Logout</a>
         <% } else { %>
             <a title="Click to log in" href="/account">My Account</a>
